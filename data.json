@@ -1,8 +1,9 @@
 [
   {
-    "username": "demo",
-    "email": "demo@gmail.com",
-    "password": "123",
-    "gender": "male"
+    "username": "ayush",
+    "email": "a@gmail.com",
+    "password": "111",
+    "gender": "",
+    "id": "a3d72348-7c8e-4241-b5e1-df83ea1e0afc"
   }
 ]

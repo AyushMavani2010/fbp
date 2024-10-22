@@ -1,0 +1,56 @@
+[
+  {
+    "email": "kalu2@gmail.com",
+    "name": "kalu",
+    "company": "d2",
+    "companyEmail": "d2@gmail.com",
+    "companyAddress": "surat",
+    "gstNumber": "23421342313",
+    "id": "0bb8116f-7899-4b36-a6ca-21c0737a3a7a"
+  },
+  {
+    "email": "bob@gmail.com",
+    "name": "bob",
+    "company": "d2",
+    "companyEmail": "d2@gmail.com",
+    "companyAddress": "surat",
+    "gstNumber": "234213213",
+    "id": "6d7fc68b-9121-4481-bb1f-1809091d2920"
+  },
+  {
+    "email": "ayush@gmail.com",
+    "name": "ayush",
+    "company": "d2",
+    "companyEmail": "d2@gmail.com",
+    "companyAddress": "surat",
+    "gstNumber": "3223221",
+    "id": "36680bcd-ceff-4872-b4f9-cf554ec35e1e"
+  },
+  {
+    "email": "naimish@gmail.com",
+    "name": "naimish ",
+    "company": "d2",
+    "companyEmail": "d2@gmail.com",
+    "companyAddress": "surat",
+    "gstNumber": "29328317",
+    "id": "c0b1a021-0280-47a1-a8ce-912e1d18f28b"
+  },
+  {
+    "email": "shubham@gmail.com",
+    "name": "subham",
+    "company": "d2",
+    "companyEmail": "d2@gmail.com",
+    "companyAddress": "surat",
+    "gstNumber": "2382632762173",
+    "id": "a8a890f3-73be-4268-b5b9-35c273586cc0"
+  },
+  {
+    "email": "jenish@gmail.com",
+    "name": "jenish",
+    "company": "d2",
+    "companyEmail": "d2@gmail.com",
+    "companyAddress": "surat",
+    "gstNumber": "73644792",
+    "id": "557ef97d-5c1a-4f55-b744-10343f408f83"
+  }
+]

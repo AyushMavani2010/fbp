@@ -116,7 +116,8 @@ app.post("/addclient", (req, res) => {
     );
   });
 });
-app.get("/clients", (req, res) => {
+
+app.get("/client", (req, res) => {
   fs.readFile("./client.json", "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({ message: "Error reading file" });
@@ -131,8 +132,8 @@ app.get("/clients", (req, res) => {
   });
 });
 
-app.put("/updateclient/:id", (req, res) => {
-  const clientId = req.params.id;
+app.put("/client/:id", (req, res) => {
+  const { id } = req.params;
   const updatedClient = req.body;
 
   fs.readFile("./client.json", "utf8", (err, data) => {
@@ -140,34 +141,142 @@ app.put("/updateclient/:id", (req, res) => {
       return res.status(500).json({ message: "Error reading file" });
     }
 
-    let clients = [];
+    try {
+      const clients = JSON.parse(data);
+      const clientIndex = clients.findIndex((client) => client.id === id);
+
+      if (clientIndex === -1) {
+        return res.status(404).json({ message: "Client not found" });
+      }
+
+      clients[clientIndex] = { ...clients[clientIndex], ...updatedClient };
+
+      fs.writeFile(
+        "./client.json",
+        JSON.stringify(clients, null, 2),
+        (err) => {
+          if (err) {
+            return res.status(500).json({ message: "Error writing file" });
+          }
+          res.status(200).json({ message: "Client updated successfully" });
+        }
+      );
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+  });
+});
+
+
+app.delete("/client/:id", (req, res) => {
+  const { id } = req.params;
+
+  fs.readFile("./client.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
 
     try {
-      clients = JSON.parse(data);
+      const clients = JSON.parse(data);
+      const updatedClients = clients.filter((client) => client.id !== id);
+
+      fs.writeFile(
+        "./client.json",
+        JSON.stringify(updatedClients, null, 2),
+        (err) => {
+          if (err) {
+            return res.status(500).json({ message: "Error writing file" });
+          }
+          res.status(200).json({ message: "Client deleted successfully" });
+        }
+      );
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+  });
+});
+
+app.post("/addinvoice", (req, res) => {
+  const newUser = { ...req.body, id: uuidv4() };
+
+  if (!newUser || Object.keys(newUser).length === 0) {
+    return res.status(400).json({ message: "Invalid data" });
+  }
+
+  fs.readFile("./invoice.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
+
+    let parsedData = [];
+
+    try {
+      if (data.trim() === "") {
+        parsedData = [];
+      } else {
+        parsedData = JSON.parse(data);
+      }
     } catch (parseError) {
       return res.status(500).json({ message: "Error parsing JSON data" });
     }
 
-    const clientIndex = clients.findIndex((client) => client.id === clientId);
-    if (clientIndex === -1) {
-      return res.status(404).json({ message: "Client not found" });
-    }
-
-    clients[clientIndex] = { ...clients[clientIndex], ...updatedClient };
+    parsedData.push(newUser);
 
     fs.writeFile(
-      "./client.json",
-      JSON.stringify(clients, null, 2),
+      "./invoice.json",
+      JSON.stringify(parsedData, null, 2),
       (err) => {
         if (err) {
           return res.status(500).json({ message: "Error writing file" });
         }
-        res.status(200).json({ message: "Client updated successfully!" });
+        res.status(200).json({ message: "Client successful Added!" });
       }
     );
   });
 });
 
+app.get("/invoice", (req, res) => {
+  fs.readFile("./invoice.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
+
+    try {
+      const invoices = JSON.parse(data);
+      res.status(200).json(invoices);
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+  });
+});
+
+app.delete("/invoice/:id", (req, res) => {
+  const { id } = req.params;
+
+  fs.readFile("./invoice.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
+
+    try {
+      const invoices = JSON.parse(data);
+      const updatedInvoices = invoices.filter((invoice) => invoice.id !== id);
+
+      fs.writeFile(
+        "./invoice.json",
+        JSON.stringify(updatedInvoices, null, 2),
+        (err) => {
+          if (err) {
+            return res.status(500).json({ message: "Error writing file" });
+          }
+          res.status(200).json({ message: "Invoice deleted successfully" });
+        }
+      );
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

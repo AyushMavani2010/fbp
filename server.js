@@ -136,6 +136,10 @@ app.put("/client/:id", (req, res) => {
   const { id } = req.params;
   const updatedClient = req.body;
 
+  if (!updatedClient || Object.keys(updatedClient).length === 0) {
+    return res.status(400).json({ message: "Invalid data" });
+  }
+
   fs.readFile("./client.json", "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({ message: "Error reading file" });
@@ -151,22 +155,17 @@ app.put("/client/:id", (req, res) => {
 
       clients[clientIndex] = { ...clients[clientIndex], ...updatedClient };
 
-      fs.writeFile(
-        "./client.json",
-        JSON.stringify(clients, null, 2),
-        (err) => {
-          if (err) {
-            return res.status(500).json({ message: "Error writing file" });
-          }
-          res.status(200).json({ message: "Client updated successfully" });
+      fs.writeFile("./client.json", JSON.stringify(clients, null, 2), (err) => {
+        if (err) {
+          return res.status(500).json({ message: "Error writing file" });
         }
-      );
+        res.status(200).json({ message: "Client updated successfully" });
+      });
     } catch (parseError) {
       return res.status(500).json({ message: "Error parsing JSON data" });
     }
   });
 });
-
 
 app.delete("/client/:id", (req, res) => {
   const { id } = req.params;
@@ -244,6 +243,45 @@ app.get("/invoice", (req, res) => {
     try {
       const invoices = JSON.parse(data);
       res.status(200).json(invoices);
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+  });
+});
+
+app.put("/invoice/:id", (req, res) => {
+  const { id } = req.params;
+  const updatedInvoice = req.body;
+
+  if (!updatedInvoice || Object.keys(updatedInvoice).length === 0) {
+    return res.status(400).json({ message: "Invalid data" });
+  }
+
+  fs.readFile("./invoice.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
+
+    try {
+      const invoices = JSON.parse(data);
+      const invoiceIndex = invoices.findIndex((invoice) => invoice.id === id);
+
+      if (invoiceIndex === -1) {
+        return res.status(404).json({ message: "Invoice not found" });
+      }
+
+      invoices[invoiceIndex] = { ...invoices[invoiceIndex], ...updatedInvoice };
+
+      fs.writeFile(
+        "./invoice.json",
+        JSON.stringify(invoices, null, 2),
+        (err) => {
+          if (err) {
+            return res.status(500).json({ message: "Error writing file" });
+          }
+          res.status(200).json({ message: "Invoice updated successfully" });
+        }
+      );
     } catch (parseError) {
       return res.status(500).json({ message: "Error parsing JSON data" });
     }

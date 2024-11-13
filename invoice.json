@@ -1,34 +1,18 @@
 [
   {
-    "invoiceDate": "2024-10-23T18:30:00.000Z",
-    "dueDate": "2024-10-28T18:30:00.000Z",
-    "invoiceNumber": "7",
-    "client": "naimish ",
-    "totalAmount": 14652,
+    "invoiceDate": "2024-11-13T18:30:00.000Z",
+    "dueDate": "2024-11-13T18:30:00.000Z",
+    "invoiceNumber": "1",
+    "client": "testfsdfs",
+    "totalAmount": 13776,
     "items": [
       {
-        "itemName": "test",
-        "amount": 1221,
-        "quantity": 12,
-        "totalItemCost": 14652
+        "itemName": "key",
+        "amount": 123,
+        "quantity": 112,
+        "totalItemCost": 13776
       }
     ],
-    "id": "16166179-b873-4232-a737-840d274858b8"
-  },
-  {
-    "invoiceDate": "2024-10-25T18:30:00.000Z",
-    "dueDate": "2024-10-26T18:30:00.000Z",
-    "invoiceNumber": "11",
-    "client": "bob",
-    "totalAmount": 21,
-    "items": [
-      {
-        "itemName": "mouse ",
-        "amount": 21,
-        "quantity": 1,
-        "totalItemCost": 21
-      }
-    ],
-    "id": "df0c8f71-4a91-473c-bec6-cb6a2493e544"
+    "id": "189f56ef-286c-40d4-959b-6768630352cc"
   }
 ]

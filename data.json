@@ -1,16 +1,23 @@
 [
   {
     "username": "ayush",
-    "email": "a@gmail.com",
+    "email": "ayush@gmail.com",
     "password": "111",
-    "gender": "",
-    "id": "a3d72348-7c8e-4241-b5e1-df83ea1e0afc"
+    "gender": "male",
+    "id": "6d4da0cb-c9be-4660-b095-e5fd5d94731c"
+  },
+  {
+    "username": "demo",
+    "email": "demo@gmail.com",
+    "password": "222",
+    "gender": "male",
+    "id": "5dbe1659-65b3-488e-b0cb-60a4ce61c712"
   },
   {
     "username": "",
     "email": "",
     "password": "",
     "gender": "",
-    "id": "68525903-8614-4df6-b08f-bf05342c8b68"
+    "id": "ffbedb02-ba48-40c8-b39e-0b1743fe379f"
   }
 ]

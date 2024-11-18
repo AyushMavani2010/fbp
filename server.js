@@ -7,6 +7,37 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/company/user", (req, res) => {
+  const userId = req.query.user_id;
+  fs.readFile("./company.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
+
+    try {
+      const companies = JSON.parse(data);
+
+      if (userId) {
+        const filteredData = companies.filter(
+          (company) => company.user_id === userId
+        );
+
+        if (filteredData.length > 0) {
+          res.status(200).json(filteredData);
+        } else {
+          res
+            .status(404)
+            .json({ message: "No data found for the given user_id" });
+        }
+      } else {
+        res.status(200).json(companies);
+      }
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+  });
+});
+
 app.post("/register", (req, res) => {
   const newUser = { ...req.body, id: uuidv4() };
 
@@ -37,8 +68,22 @@ app.post("/register", (req, res) => {
       if (err) {
         return res.status(500).json({ message: "Error writing file" });
       }
-      res.status(200).json({ message: "Registration successful!" });
+      res.status(200).json({ message: "Registration !", id: newUser.id });
     });
+  });
+});
+app.get("/users", (req, res) => {
+  fs.readFile("./data.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
+
+    try {
+      const users = JSON.parse(data);
+      res.status(200).json(users);
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
   });
 });
 
@@ -117,6 +162,69 @@ app.post("/addclient", (req, res) => {
   });
 });
 
+app.post("/addcompany", (req, res) => {
+  const { company, companyEmail, companyAddress, gstNumber, userId } = req.body;
+
+  if (!company || !companyEmail || !companyAddress || !gstNumber || !userId) {
+    return res
+      .status(400)
+      .json({ message: "All fields, including userId, are required" });
+  }
+
+  const newCompany = {
+    id: uuidv4(),
+    company,
+    companyEmail,
+    companyAddress,
+    gstNumber,
+    userId,
+  };
+
+  fs.readFile("./company.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
+
+    let parsedData = [];
+
+    try {
+      if (data.trim() === "") {
+        parsedData = [];
+      } else {
+        parsedData = JSON.parse(data);
+      }
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+
+    parsedData.push(newCompany);
+
+    fs.writeFile(
+      "./company.json",
+      JSON.stringify(parsedData, null, 2),
+      (err) => {
+        if (err) {
+          return res.status(500).json({ message: "Error writing file" });
+        }
+        res.status(200).json({ message: "Company successfully added!" });
+      }
+    );
+  });
+});
+app.get("/company", (req, res) => {
+  fs.readFile("./company.json", "utf8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ message: "Error reading file" });
+    }
+
+    try {
+      const companies = JSON.parse(data);
+      res.status(200).json(companies);
+    } catch (parseError) {
+      return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+  });
+});
 app.get("/client", (req, res) => {
   fs.readFile("./client.json", "utf8", (err, data) => {
     if (err) {

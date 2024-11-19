@@ -19,7 +19,7 @@ app.get("/company/user", (req, res) => {
 
       if (userId) {
         const filteredData = companies.filter(
-          (company) => company.user_id === userId
+          (company) => company.userId === userId
         );
 
         if (filteredData.length > 0) {
@@ -111,9 +111,13 @@ app.post("/login", (req, res) => {
         return res.status(401).json({ message: "Invalid email or password" });
       }
 
-      const token = jwt.sign({ email: user.email }, "your-secret-key", {
-        expiresIn: "1h",
-      });
+      const token = jwt.sign(
+        { email: user.email, id: user.id },
+        "your-secret-key",
+        {
+          expiresIn: "1h",
+        }
+      );
 
       res.status(200).json({ token });
     } catch (parseError) {
@@ -163,6 +167,8 @@ app.post("/addclient", (req, res) => {
 });
 
 app.post("/addcompany", (req, res) => {
+  console.log("Received data:", req.body);
+
   const { company, companyEmail, companyAddress, gstNumber, userId } = req.body;
 
   if (!company || !companyEmail || !companyAddress || !gstNumber || !userId) {
@@ -186,7 +192,6 @@ app.post("/addcompany", (req, res) => {
     }
 
     let parsedData = [];
-
     try {
       if (data.trim() === "") {
         parsedData = [];
@@ -211,6 +216,7 @@ app.post("/addcompany", (req, res) => {
     );
   });
 });
+
 app.get("/company", (req, res) => {
   fs.readFile("./company.json", "utf8", (err, data) => {
     if (err) {

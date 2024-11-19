@@ -1,23 +1,44 @@
 [
   {
+    "username": "jenish",
+    "email": "jenish@gmail.com",
+    "password": "jenish",
+    "gender": "male",
+    "id": "fe69e7ad-433e-47e5-9d59-8e7c2f0d6e64"
+  },
+  {
+    "username": "rakesh",
+    "email": "rakesh@gmail.com",
+    "password": "jenish",
+    "gender": "male",
+    "id": "77e0554b-500f-4d4a-b997-47908d0b6051"
+  },
+  {
     "username": "ayush",
     "email": "ayush@gmail.com",
-    "password": "111",
+    "password": "ayush",
     "gender": "male",
-    "id": "6d4da0cb-c9be-4660-b095-e5fd5d94731c"
+    "id": "02efaa66-4a66-466f-b92b-24ce7366edf0"
   },
   {
     "username": "demo",
     "email": "demo@gmail.com",
-    "password": "222",
+    "password": "demo",
     "gender": "male",
-    "id": "5dbe1659-65b3-488e-b0cb-60a4ce61c712"
+    "id": "9e711279-82c7-434f-9299-415d4f146319"
+  },
+  {
+    "username": "dhaval",
+    "email": "dhaval@gmail.com",
+    "password": "test",
+    "gender": "male",
+    "id": "fa53c570-fd29-4862-9ad9-b112ca81b6ac"
   },
   {
     "username": "",
     "email": "",
     "password": "",
     "gender": "",
-    "id": "ffbedb02-ba48-40c8-b39e-0b1743fe379f"
+    "id": "852b1368-2f0a-4ae8-9905-34ba9d2f5eb7"
   }
 ]

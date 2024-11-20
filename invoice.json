@@ -1,15 +1,6 @@
 [
   {
     "invoiceDate": "2024-11-18T18:30:00.000Z",
-    "dueDate": "2024-11-18T18:30:00.000Z",
-    "invoiceNumber": "1",
-    "client": "ayush",
-    "totalAmount": 0,
-    "items": [],
-    "id": "07f28b4d-e766-4b38-9f0d-f8dc65766203"
-  },
-  {
-    "invoiceDate": "2024-11-18T18:30:00.000Z",
     "dueDate": "2024-11-19T18:30:00.000Z",
     "invoiceNumber": "1",
     "client": "jenish",
@@ -25,72 +16,47 @@
     "id": "b6103065-1d01-49aa-9010-23a83149f977"
   },
   {
-    "invoiceDate": "2024-11-18T18:30:00.000Z",
-    "dueDate": "2024-11-19T18:30:00.000Z",
-    "invoiceNumber": "vbnvbn",
-    "client": "jenish",
-    "totalAmount": 0,
-    "items": [],
-    "id": "25b82435-6dbf-499b-9016-cf3714ef16c4"
-  },
-  {
-    "invoiceDate": "2024-11-19T18:30:00.000Z",
-    "dueDate": "2024-11-20T18:30:00.000Z",
-    "invoiceNumber": "dfgdgdf",
-    "client": "jenish",
-    "totalAmount": 0,
-    "items": [],
-    "id": "15d572b7-b85c-4f31-8494-855a4f70062c"
-  },
-  {
-    "invoiceDate": "2024-11-21T18:30:00.000Z",
-    "dueDate": "2024-11-19T18:30:00.000Z",
-    "invoiceNumber": "12",
-    "client": "ayush",
-    "totalAmount": 2589552,
-    "items": [
-      {
-        "itemName": "1211",
-        "amount": 23121,
-        "quantity": 112,
-        "totalItemCost": 2589552
-      }
-    ],
-    "id": "2825ae6b-f419-49cb-8ba0-81aa6ba9700d"
-  },
-  {
     "invoiceDate": "2024-11-20T18:30:00.000Z",
-    "dueDate": "2024-11-22T18:30:00.000Z",
-    "invoiceNumber": "2131",
-    "client": "Ayush Mavani",
-    "totalAmount": 211,
-    "items": [
-      {
-        "itemName": "wdeqw",
-        "amount": 211,
-        "quantity": 1,
-        "totalItemCost": 211
-      }
-    ],
-    "id": "04c08d1d-4c2c-4b59-8bba-f38ea23c2b22"
-  },
-  {
-    "invoiceDate": "2024-11-20T18:30:00.000Z",
-    "dueDate": "2024-11-19T18:30:00.000Z",
-    "invoiceNumber": "12",
-    "client": "ayush",
-    "totalAmount": 0,
-    "items": [],
-    "id": "bac95ded-52fb-4fa8-b6d5-76e8b2dac9b9"
-  },
-  {
-    "invoiceDate": "2024-11-19T18:30:00.000Z",
-    "dueDate": "2024-11-19T18:30:00.000Z",
+    "dueDate": "2024-11-25T18:30:00.000Z",
     "invoiceNumber": "1",
-    "client": "ayush",
+    "client": "Ayush Mavani",
     "totalAmount": 0,
-    "items": [],
+    "items": [
+      {
+        "itemName": "key",
+        "amount": 0,
+        "quantity": 1,
+        "totalItemCost": 0
+      },
+      {
+        "itemName": "key",
+        "amount": 0,
+        "quantity": 1,
+        "totalItemCost": 0
+      }
+    ],
     "userId": "02efaa66-4a66-466f-b92b-24ce7366edf0",
-    "id": "7dcc57c3-3766-456f-a276-1d7e70ce5c02"
+    "id": "e3b147e6-f273-4ebc-a819-17c6f208f878"
+  },
+  {
+    "invoiceDate": "2024-11-20T18:30:00.000Z",
+    "dueDate": "2024-11-21T18:30:00.000Z",
+    "invoiceNumber": "1",
+    "selectedClient": "56b021f3-06d8-4754-9df0-19f95750ec7e",
+    "itemName": "",
+    "amount": "",
+    "quantity": 1,
+    "items": [
+      {
+        "itemName": "key",
+        "amount": "01",
+        "quantity": 1,
+        "totalItemCost": 1
+      }
+    ],
+    "totalAmount": 1,
+    "userId": "02efaa66-4a66-466f-b92b-24ce7366edf0",
+    "client": "Ayush Mavani",
+    "id": "bdc42bf3-677a-4bb2-b946-5bbf9f4cd105"
   }
 ]

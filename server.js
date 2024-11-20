@@ -231,7 +231,9 @@ app.get("/company", (req, res) => {
     }
   });
 });
-app.get("/client", (req, res) => {
+
+app.get("/client/userId", (req, res) => {
+  const userId = req.query.user_id;
   fs.readFile("./client.json", "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({ message: "Error reading file" });
@@ -239,7 +241,22 @@ app.get("/client", (req, res) => {
 
     try {
       const clients = JSON.parse(data);
-      res.status(200).json(clients);
+
+      if (userId) {
+        const filteredClients = clients.filter(
+          (client) => client.userId === userId
+        );
+
+        if (filteredClients.length > 0) {
+          return res.status(200).json(filteredClients);
+        } else {
+          return res
+            .status(404)
+            .json({ message: "No clients found for the given user_id" });
+        }
+      } else {
+        return res.status(200).json(clients);
+      }
     } catch (parseError) {
       return res.status(500).json({ message: "Error parsing JSON data" });
     }
@@ -347,18 +364,56 @@ app.post("/addinvoice", (req, res) => {
     );
   });
 });
+const path = require("path");
 
-app.get("/invoice", (req, res) => {
-  fs.readFile("./invoice.json", "utf8", (err, data) => {
+app.get("/client", (req, res) => {
+  fs.readFile("./client.json", "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({ message: "Error reading file" });
     }
 
     try {
-      const invoices = JSON.parse(data);
-      res.status(200).json(invoices);
+      const clients = JSON.parse(data);
+      res.status(200).json(clients);
     } catch (parseError) {
       return res.status(500).json({ message: "Error parsing JSON data" });
+    }
+  });
+});
+
+app.get("/invoice/userId", (req, res) => {
+  const userId = req.query.user_id;
+
+  if (!userId) {
+    return res
+      .status(400)
+      .json({ message: "user_id query parameter is required" });
+  }
+
+  const filePath = path.join(__dirname, "invoice.json"); // Ensure the file path is correct
+
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading invoices file:", err);
+      return res.status(500).json({ message: "Error reading invoices file" });
+    }
+
+    try {
+      const invoices = JSON.parse(data);
+      const filteredInvoices = invoices.filter(
+        (invoice) => invoice.userId === userId
+      );
+
+      if (filteredInvoices.length > 0) {
+        return res.status(200).json(filteredInvoices);
+      } else {
+        return res
+          .status(404)
+          .json({ message: "No invoices found for the given user_id" });
+      }
+    } catch (parseError) {
+      console.error("Error parsing invoices data:", parseError);
+      return res.status(500).json({ message: "Error parsing invoices data" });
     }
   });
 });
